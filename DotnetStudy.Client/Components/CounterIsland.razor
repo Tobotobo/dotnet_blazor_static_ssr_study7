@@ -1,13 +1,17 @@
 @rendermode InteractiveWebAssembly
 
-<button type="button" @onclick="Increment">
+<button 
+    type="button" 
+    @onclick="Increment"
+    disabled="@(!RendererInfo.IsInteractive)">
     Count: @Count
 </button>
 
 <FluentButton 
     OnClick="@Increment" 
     Appearance="ButtonAppearance.Primary" 
-    Title="A tooltip for this button">
+    Title="A tooltip for this button"
+    Disabled="@(!RendererInfo.IsInteractive)">
     @Count
 </FluentButton>
 
