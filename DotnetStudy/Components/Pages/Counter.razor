@@ -1,0 +1,33 @@
+@page "/counter"
+
+<form method="post"
+      @formname="counter-form"
+      @onsubmit="Submit">
+
+    <AntiforgeryToken />
+
+    <h1>Static SSR Page</h1>
+
+    <CounterIsland Count="@(PostedCount ?? 0)"/>
+
+    <button type="submit">
+        送信
+    </button>
+</form>
+
+@if (PostedCount is not null)
+{
+    <p>送信された値: @PostedCount</p>
+}
+
+@code {
+    [SupplyParameterFromForm(
+        FormName = "counter-form",
+        Name = "Count")]
+    private int? PostedCount { get; set; }
+
+    private void Submit()
+    {
+        Console.WriteLine($"Count = {PostedCount}");
+    }
+}

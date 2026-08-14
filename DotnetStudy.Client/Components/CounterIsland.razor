@@ -1,0 +1,26 @@
+@rendermode InteractiveWebAssembly
+
+<button type="button" @onclick="Increment">
+    Count: @Count
+</button>
+
+<FluentButton 
+    OnClick="@Increment" 
+    Appearance="ButtonAppearance.Primary" 
+    Title="A tooltip for this button">
+    @Count
+</FluentButton>
+
+<input type="hidden"
+       name="Count"
+       value="@Count" />
+
+@code {
+    [Parameter]
+    public int Count { get; set; } = 0;
+
+    private void Increment()
+    {
+        Count++;
+    }
+}
